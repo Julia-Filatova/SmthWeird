@@ -36,14 +36,21 @@ public class LifecycleProcess
   {
     int newAge = cell.getValue().increaseAge();
 
+
     if (newAge > Lizard.MAX_AGE || random.nextDouble() < CHANCE_OF_ACCIDENT) {
       cell.setValue(Empty.getInstance());
+    } else {
+      cell.getValue().setReproducedThisYear(false);
     }
   }
 
   public void reproduce() {
     field.getAllCells().entrySet().stream()
-        .filter(cell -> cell.getValue().getType() != LizardType.EMPTY)
+        .filter(cell -> cell.getValue().getType() == LizardType.EGOIST)
+        .forEach(cell -> findCouple(cell));
+
+    field.getAllCells().entrySet().stream()
+        .filter(cell -> cell.getValue().getType() == LizardType.ALTRUIST)
         .forEach(cell -> findCouple(cell));
 
   }
@@ -86,8 +93,8 @@ public class LifecycleProcess
       entry2.getValue().setReproducedThisYear(true);
     }
 
-    //entry1.getValue().setReproducedThisYear(true);
-    //entry2.getValue().setReproducedThisYear(true);
+    entry1.getValue().setReproducedThisYear(true);
+    entry2.getValue().setReproducedThisYear(true);
 
     //if A + E, E reproduces
     //if A + A, random one reproduces
@@ -98,6 +105,7 @@ public class LifecycleProcess
   {
     findNearCells(cell).stream()
         .filter(lizardEntry -> lizardEntry.getValue().getType() == LizardType.EMPTY)
+        .filter(lizardEntry -> random.nextBoolean())//spread only on part of cells
         .forEach(lizardEntry -> lizardEntry.setValue(Lizard.createLizard(cell.getValue().getType())));
   }
 

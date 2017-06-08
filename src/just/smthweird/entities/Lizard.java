@@ -7,9 +7,8 @@ public class Lizard
 {
 
   //TODO move all constants to a properties file
-  public static int MIN_AGE = 0;
 
-  public static int MIN_REPRODUCTION_AGE = 3;
+  public static int MIN_REPRODUCTION_AGE = 2;
 
   public static int MAX_AGE = 9;
 
@@ -31,6 +30,11 @@ public class Lizard
   public int getAge()
   {
     return age;
+  }
+
+  public void setAge(int age)
+  {
+    this.age = age;
   }
 
   public int increaseAge()
