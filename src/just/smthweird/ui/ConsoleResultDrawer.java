@@ -52,9 +52,9 @@ public class ConsoleResultDrawer implements ResultDrawer
   private void printCell(Lizard cell)
   {
     if (cell.getType() == LizardType.ALTRUIST) {
-      System.out.print(ALTRUIST);
+      System.out.print( ANSI_CYAN_BACKGROUND + cell.getAge() + ANSI_RESET);
     } else if (cell.getType() == LizardType.EGOIST) {
-      System.out.print(EGOIST);
+      System.out.print(ANSI_RED_BACKGROUND + cell.getAge() + ANSI_RESET);
     } else {
       System.out.print(EMPTY);
     }

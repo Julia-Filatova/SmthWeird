@@ -26,7 +26,7 @@ public class MainRunner
     Field field = Field.createField(10, 10);
     field.setCell(new Coordinates(2,3), Lizard.createLizard(LizardType.ALTRUIST));
     field.setCell(new Coordinates(2,4), Lizard.createLizard(LizardType.ALTRUIST));
-    field.setCell(new Coordinates(3,5), Lizard.createLizard(LizardType.ALTRUIST));
+    field.setCell(new Coordinates(3,5), Lizard.createLizard(LizardType.EGOIST));
     field.setCell(new Coordinates(4,5), Lizard.createLizard(LizardType.ALTRUIST));
     field.setCell(new Coordinates(4,8), Lizard.createLizard(LizardType.ALTRUIST));
 

@@ -51,7 +51,6 @@ public class LifecycleProcess
     //random choose one of them
 
     findNearCells(cell).stream()
-        //split this condition
         .filter(lizardEntry -> lizardEntry.getValue().isReproducible())
         .findAny()
         .ifPresent(lizardEntry -> reproduceAndSpread(cell, lizardEntry));
@@ -65,13 +64,26 @@ public class LifecycleProcess
 
     //FIXME
 
-    if (new Random().nextBoolean()) {
+    if (type1 == LizardType.EGOIST && type2 == LizardType.EGOIST) {
+      return;
+    }
+
+    if (type1 == LizardType.EGOIST) {
       spreadChildren(entry1);
-      entry1.getValue().setReproducedThisYear(true);
+     // entry1.getValue().setReproducedThisYear(true);
+    } else if (type2 == LizardType.EGOIST) {
+      spreadChildren(entry2);
+     // entry2.getValue().setReproducedThisYear(true);
+    } else if (new Random().nextBoolean()) {
+      spreadChildren(entry1);
+    //  entry1.getValue().setReproducedThisYear(true);
     } else {
       spreadChildren(entry2);
-      entry2.getValue().setReproducedThisYear(true);
+    //  entry2.getValue().setReproducedThisYear(true);
     }
+
+    entry1.getValue().setReproducedThisYear(true);
+    entry2.getValue().setReproducedThisYear(true);
 
     //if A + E, E reproduces
     //if A + A, random one reproduces
