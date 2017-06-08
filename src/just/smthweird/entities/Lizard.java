@@ -7,7 +7,7 @@ public class Lizard
 {
   public static int MIN_AGE = 0;
 
-  public static int MIN_REPRODUCTION_AGE = 1;
+  public static int MIN_REPRODUCTION_AGE = 2;
 
   public static int MAX_AGE = 5;
 
@@ -43,6 +43,11 @@ public class Lizard
   public boolean isReproducedThisYear()
   {
     return reproducedThisYear;
+  }
+
+  public boolean isReproducible()
+  {
+    return type != LizardType.EMPTY && isMature() && !isReproducedThisYear();
   }
 
   public void setReproducedThisYear(boolean reproducedThisYear)
