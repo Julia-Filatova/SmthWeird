@@ -18,6 +18,10 @@ import just.smthweird.entities.LizardType;
  */
 public class LifecycleProcess
 {
+  public static final double CHANCE_OF_ACCIDENT = 0.05;
+
+  public static final Random random = new Random();
+
   private Field field = Field.FIELD;
 
   public void increaseYear() {
@@ -32,7 +36,7 @@ public class LifecycleProcess
   {
     int newAge = cell.getValue().increaseAge();
 
-    if (newAge > Lizard.MAX_AGE) {
+    if (newAge > Lizard.MAX_AGE || random.nextDouble() < CHANCE_OF_ACCIDENT) {
       cell.setValue(Empty.getInstance());
     }
   }
@@ -70,20 +74,20 @@ public class LifecycleProcess
 
     if (type1 == LizardType.EGOIST) {
       spreadChildren(entry1);
-     // entry1.getValue().setReproducedThisYear(true);
+      entry1.getValue().setReproducedThisYear(true);
     } else if (type2 == LizardType.EGOIST) {
       spreadChildren(entry2);
-     // entry2.getValue().setReproducedThisYear(true);
-    } else if (new Random().nextBoolean()) {
+      entry2.getValue().setReproducedThisYear(true);
+    } else if (random.nextBoolean()) {
       spreadChildren(entry1);
-    //  entry1.getValue().setReproducedThisYear(true);
+      entry1.getValue().setReproducedThisYear(true);
     } else {
       spreadChildren(entry2);
-    //  entry2.getValue().setReproducedThisYear(true);
+      entry2.getValue().setReproducedThisYear(true);
     }
 
-    entry1.getValue().setReproducedThisYear(true);
-    entry2.getValue().setReproducedThisYear(true);
+    //entry1.getValue().setReproducedThisYear(true);
+    //entry2.getValue().setReproducedThisYear(true);
 
     //if A + E, E reproduces
     //if A + A, random one reproduces
