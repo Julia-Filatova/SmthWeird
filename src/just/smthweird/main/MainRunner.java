@@ -1,8 +1,6 @@
 package just.smthweird.main;
 
-import just.smthweird.entities.Coordinates;
 import just.smthweird.entities.Field;
-import just.smthweird.entities.Lizard;
 import just.smthweird.entities.LizardType;
 import just.smthweird.process.DataRandomizer;
 import just.smthweird.process.LifecycleProcess;
@@ -24,14 +22,15 @@ public class MainRunner
     //generate start data (by utility class)
     //start process (cycle)
     //print results
-    Field field = Field.createField(10, 10);
+    Field field = Field.initializeField(10, 10);
     new DataRandomizer().randomize(field);
 
     drawer.printField(field, 0);
 
     int i = 0;
     while (field.getAllCells().entrySet().stream()
-        .anyMatch(lizardEntry -> lizardEntry.getValue().getType() == LizardType.EGOIST)){
+        .anyMatch(lizardEntry -> lizardEntry.getValue().getType() == LizardType.EGOIST))
+    {
       process.increaseYear();
 
       drawer.printField(field, i++);

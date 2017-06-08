@@ -14,9 +14,10 @@ public class DataRandomizer
 {
   public static final Random random = new Random();
 
-  public void randomize(Field field) {
-    //dunno
-    for (int i = 0; i < field.getWidth() + field.getLength(); i++) {
+  public void randomize(Field field)
+  {
+    for (int i = 0; i < field.getWidth() + field.getLength(); i++)
+    {
       int x = random.nextInt(field.getLength());
       int y = random.nextInt(field.getWidth());
 
@@ -26,6 +27,7 @@ public class DataRandomizer
       field.setCell(new Coordinates(x, y), lizard);
     }
 
+    //singe mutated lizard
     int x = random.nextInt(field.getLength());
     int y = random.nextInt(field.getWidth());
 

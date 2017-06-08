@@ -18,8 +18,8 @@ public class Lizard
 
   private LizardType type;
 
-  //not sure if I need it
-  public static Lizard createLizard(LizardType type) {
+  public static Lizard createLizard(LizardType type)
+  {
     Lizard lizard = new Lizard();
 
     lizard.type = type;
@@ -42,7 +42,8 @@ public class Lizard
     return ++age;
   }
 
-  public boolean isMature() {
+  public boolean isMature()
+  {
     return age >= MIN_REPRODUCTION_AGE;
   }
 

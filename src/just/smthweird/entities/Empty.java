@@ -6,11 +6,14 @@ package just.smthweird.entities;
  */
 public class Empty extends Lizard
 {
-  private Empty() {}
+  private Empty()
+  {
+  }
 
   private static Empty instance = new Empty();
 
-  public static Empty getInstance() {
+  public static Empty getInstance()
+  {
     return instance;
   }
 

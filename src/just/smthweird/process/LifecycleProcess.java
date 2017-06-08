@@ -24,7 +24,8 @@ public class LifecycleProcess
 
   private Field field = Field.FIELD;
 
-  public void increaseYear() {
+  public void increaseYear()
+  {
     field.getAllCells().entrySet().stream()
         .filter(cell -> cell.getValue().getType() != LizardType.EMPTY)
         .forEach(cell -> increaseAge(cell));
@@ -36,15 +37,18 @@ public class LifecycleProcess
   {
     int newAge = cell.getValue().increaseAge();
 
-
-    if (newAge > Lizard.MAX_AGE || random.nextDouble() < CHANCE_OF_ACCIDENT) {
+    if (newAge > Lizard.MAX_AGE || random.nextDouble() < CHANCE_OF_ACCIDENT)
+    {
       cell.setValue(Empty.getInstance());
-    } else {
+    }
+    else
+    {
       cell.getValue().setReproducedThisYear(false);
     }
   }
 
-  public void reproduce() {
+  public void reproduce()
+  {
     field.getAllCells().entrySet().stream()
         .filter(cell -> cell.getValue().getType() == LizardType.EGOIST)
         .forEach(cell -> findCouple(cell));
@@ -72,23 +76,30 @@ public class LifecycleProcess
     LizardType type1 = entry1.getValue().getType();
     LizardType type2 = entry1.getValue().getType();
 
-
     //FIXME
 
-    if (type1 == LizardType.EGOIST && type2 == LizardType.EGOIST) {
+    if (type1 == LizardType.EGOIST && type2 == LizardType.EGOIST)
+    {
       return;
     }
 
-    if (type1 == LizardType.EGOIST) {
+    if (type1 == LizardType.EGOIST)
+    {
       spreadChildren(entry1);
       entry1.getValue().setReproducedThisYear(true);
-    } else if (type2 == LizardType.EGOIST) {
+    }
+    else if (type2 == LizardType.EGOIST)
+    {
       spreadChildren(entry2);
       entry2.getValue().setReproducedThisYear(true);
-    } else if (random.nextBoolean()) {
+    }
+    else if (random.nextBoolean())
+    {
       spreadChildren(entry1);
       entry1.getValue().setReproducedThisYear(true);
-    } else {
+    }
+    else
+    {
       spreadChildren(entry2);
       entry2.getValue().setReproducedThisYear(true);
     }
@@ -110,12 +121,16 @@ public class LifecycleProcess
   }
 
   //need to be refactored
-  private List<Entry<Coordinates, Lizard>> findNearCells(Entry<Coordinates, Lizard> cell) {
+  private List<Entry<Coordinates, Lizard>> findNearCells(Entry<Coordinates, Lizard> cell)
+  {
     Set<Coordinates> nearCoordinates = new HashSet<>();
 
-    for (int i = -1; i <= 1; i++) {
-      for (int j = -1; j <= 1; j++) {
-        if (i == 0 && j == 0) {
+    for (int i = -1; i <= 1; i++)
+    {
+      for (int j = -1; j <= 1; j++)
+      {
+        if (i == 0 && j == 0)
+        {
           continue;
         }
 

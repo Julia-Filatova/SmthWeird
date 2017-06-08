@@ -14,19 +14,21 @@ public enum Field
 
   private int width;
 
-  public static Field createField(int length, int width) {
+  public static Field initializeField(int length, int width)
+  {
     FIELD.data = new HashMap<>();
 
     FIELD.length = length;
     FIELD.width = width;
 
     //initialize cells
-    for (int i = 0; i < length; i++) {
-      for (int j = 0; j < width; j++) {
+    for (int i = 0; i < length; i++)
+    {
+      for (int j = 0; j < width; j++)
+      {
         Coordinates coors = new Coordinates(i, j);
         FIELD.data.put(coors, Empty.getInstance());
       }
-      System.out.println();
     }
 
     return FIELD;
@@ -34,15 +36,18 @@ public enum Field
 
   private Map<Coordinates, Lizard> data;
 
-  public Map<Coordinates, Lizard> getAllCells() {
+  public Map<Coordinates, Lizard> getAllCells()
+  {
     return data;
   }
 
-  public Lizard getCell(Coordinates coordinates) {
+  public Lizard getCell(Coordinates coordinates)
+  {
     return data.get(coordinates);
   }
 
-  public void setCell(Coordinates coordinates, Lizard lizard) {
+  public void setCell(Coordinates coordinates, Lizard lizard)
+  {
     data.put(coordinates, lizard);
   }
 
