@@ -1,4 +1,4 @@
-package just.smthweird.main;
+package just.smthweird.runner;
 
 import just.smthweird.entities.Field;
 import just.smthweird.entities.LizardType;
