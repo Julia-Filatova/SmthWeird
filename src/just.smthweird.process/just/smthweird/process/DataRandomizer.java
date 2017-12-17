@@ -18,20 +18,25 @@ public class DataRandomizer
   {
     for (int i = 0; i < field.getWidth() + field.getLength(); i++)
     {
-      int x = random.nextInt(field.getLength());
-      int y = random.nextInt(field.getWidth());
-
-      Lizard lizard = Lizard.createLizard(LizardType.ALTRUIST);
-      lizard.setAge(random.nextInt(Lizard.MAX_AGE));
-
-      field.setCell(new Coordinates(x, y), lizard);
+      generateLizard(field, LizardType.ALTRUIST, random.nextInt(Lizard.MAX_AGE));
     }
 
     //singe mutated lizard
+    generateNewbornLizard(field, LizardType.EGOIST);
+  }
+
+  private void generateNewbornLizard(Field field, LizardType lizardType)
+  {
+    generateLizard(field, lizardType, 0);
+  }
+
+  private void generateLizard(Field field, LizardType lizardType, int age)
+  {
     int x = random.nextInt(field.getLength());
     int y = random.nextInt(field.getWidth());
 
-    Lizard lizard = Lizard.createLizard(LizardType.EGOIST);
+    Lizard lizard = Lizard.createLizard(lizardType);
+    lizard.setAge(age);
 
     field.setCell(new Coordinates(x, y), lizard);
   }
