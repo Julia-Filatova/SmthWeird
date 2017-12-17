@@ -47,6 +47,11 @@ public class Lizard
     return age >= MIN_REPRODUCTION_AGE;
   }
 
+  public boolean isEmpty()
+  {
+    return LizardType.EMPTY.equals(getType());
+  }
+
   public boolean isReproducedThisYear()
   {
     return reproducedThisYear;

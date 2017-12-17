@@ -13,8 +13,10 @@ import just.smthweird.entities.LizardType;
 public class DataRandomizer
 {
   public static final Random random = new Random();
+  
+  private Field field = Field.FIELD;
 
-  public void randomize(Field field)
+  public void randomize()
   {
     for (int i = 0; i < field.getWidth() + field.getLength(); i++)
     {

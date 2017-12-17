@@ -23,7 +23,7 @@ public class MainRunner
     //start process (cycle)
     //print results
     Field field = Field.initializeField(10, 10);
-    new DataRandomizer().randomize(field);
+    new DataRandomizer().randomize();
 
     drawer.printField(field, 0);
 

@@ -27,7 +27,7 @@ public class LifecycleProcess
   public void increaseYear()
   {
     field.getAllCells().entrySet().stream()
-        .filter(cell -> cell.getValue().getType() != LizardType.EMPTY)
+        .filter(cell -> !cell.getValue().isEmpty())
         .forEach(cell -> increaseAge(cell));
 
     reproduce();
@@ -50,13 +50,8 @@ public class LifecycleProcess
   public void reproduce()
   {
     field.getAllCells().entrySet().stream()
-        .filter(cell -> cell.getValue().getType() == LizardType.EGOIST)
+        .filter(cell -> !cell.getValue().isEmpty())
         .forEach(cell -> findCouple(cell));
-
-    field.getAllCells().entrySet().stream()
-        .filter(cell -> cell.getValue().getType() == LizardType.ALTRUIST)
-        .forEach(cell -> findCouple(cell));
-
   }
 
   private void findCouple(Entry<Coordinates, Lizard> cell)
@@ -74,7 +69,10 @@ public class LifecycleProcess
   private void reproduceAndSpread(Entry<Coordinates, Lizard> entry1, Entry<Coordinates, Lizard> entry2)
   {
     LizardType type1 = entry1.getValue().getType();
-    LizardType type2 = entry1.getValue().getType();
+    LizardType type2 = entry2.getValue().getType();
+
+    entry1.getValue().setReproducedThisYear(true);
+    entry2.getValue().setReproducedThisYear(true);
 
     //FIXME
 
@@ -86,27 +84,19 @@ public class LifecycleProcess
     if (type1 == LizardType.EGOIST)
     {
       spreadChildren(entry1);
-      entry1.getValue().setReproducedThisYear(true);
     }
     else if (type2 == LizardType.EGOIST)
     {
       spreadChildren(entry2);
-      entry2.getValue().setReproducedThisYear(true);
     }
     else if (random.nextBoolean())
     {
       spreadChildren(entry1);
-      entry1.getValue().setReproducedThisYear(true);
     }
     else
     {
       spreadChildren(entry2);
-      entry2.getValue().setReproducedThisYear(true);
     }
-
-    entry1.getValue().setReproducedThisYear(true);
-    entry2.getValue().setReproducedThisYear(true);
-
     //if A + E, E reproduces
     //if A + A, random one reproduces
     //if E + E, no one reproduces
@@ -115,7 +105,7 @@ public class LifecycleProcess
   private void spreadChildren(Entry<Coordinates, Lizard> cell)
   {
     findNearCells(cell).stream()
-        .filter(lizardEntry -> lizardEntry.getValue().getType() == LizardType.EMPTY)
+        .filter(lizardEntry -> lizardEntry.getValue().isEmpty())
         .filter(lizardEntry -> random.nextBoolean())//spread only on part of cells
         .forEach(lizardEntry -> lizardEntry.setValue(Lizard.createLizard(cell.getValue().getType())));
   }
